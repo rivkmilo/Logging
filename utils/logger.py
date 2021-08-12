@@ -1,7 +1,16 @@
+import os
 import logging
 from utils import DETAILED_LOGGER_PATH, LOGGER_NAME, SHORT_LOGGER_PATH
 
+def _create_logs_folder():
+    try:
+        os.mkdir('logs')
+    except FileExistsError as ex:
+        pass
+
 def _get_logger():
+    _create_logs_folder()
+
     logger = logging.getLogger(LOGGER_NAME)
     logger.setLevel(logging.INFO)
 
